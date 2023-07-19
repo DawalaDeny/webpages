@@ -1,0 +1,89 @@
+body {
+    background-image: url("../img/map.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    user-select: none;
+    user-drag: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+img {
+    height: 225px;
+    width: 188px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    transition: transform 0.2s ease;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60rem;
+    margin: 20px auto 60px auto;
+    grid-gap: 10px;
+    justify-content: center;
+
+
+}
+
+
+
+#start, #reset {
+    width: 200px;
+    height: 50px;
+    float: left;
+    font-family: Herculanum, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+aside {
+    height: 200px;
+    width: 200px;
+    margin: 300px auto;
+
+}
+
+p {
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    font-family: Herculanum, sans-serif;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    background-color: orangered;
+    border-radius: 25px;
+
+
+}
+
+#start:hover, #reset:hover {
+    transform: scale(1.2);
+    background-color: orangered;
+    font-size: 30px;
+color: white;
+
+
+}
+.kaart:hover{
+    transform: scale(1.2);
+}
+button{
+    transition: transform 0.2s ease;
+}
+button{
+    margin-bottom: 5px;
+
+}
