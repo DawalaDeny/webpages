@@ -2,7 +2,7 @@ const backgroundList = ['bg_katara_1.jpg','bg_momo_2.jpg',
 'bg_sokka_3.jpg','bg_zuko_4.jpg',
 'bg_toph_5.jpg','bg_aang_6.jpg',]
 
-let currentIndex = 0;
+let currentIndex = 1;
 
 const start = () =>{
     setInterval(background, 3000); 
