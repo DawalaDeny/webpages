@@ -1,0 +1,81 @@
+html, body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
+    user-select: none;
+    user-drag: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+}
+
+body {
+    position: relative; 
+
+}
+
+main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/bg_katara_1.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    
+}
+
+#menu {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 40%;
+    height: 40%;
+    font-weight: bold;
+   
+    
+}
+
+#menu * {
+    font-family: Herculanum, sans-serif;
+    display: block;
+    margin: auto;
+    width: 70%;
+    text-align: center;
+    margin-top: 20px;
+    height: 10%;
+    font-weight: bold;
+}
+#menu button:hover {
+    transform: scale(1.2);
+    background-color: orangered;
+    color: white;
+    transition: transform 0.5s ease;
+}
+#menu p{
+overflow: hidden;
+height: 20%;
+font-size: 200%;
+border: solid 2px orangered;
+background-color: orangered;
+border-radius: 25px 25px;
+color: white;
+display: flex;
+    justify-content: center; 
+    align-items: center; 
+
+}
+@media screen and (max-width: 900px) {
+    #menu p{
+        font-size: 100%;
+        height: 20%;
+        }
+    
+    }
+    
