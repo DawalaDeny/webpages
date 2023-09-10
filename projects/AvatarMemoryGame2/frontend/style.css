@@ -1,20 +1,23 @@
-html, body {
+html,
+body {
     overflow: hidden;
     margin: 0;
     padding: 0;
     height: 100%;
+}
 
+html * {
     user-select: none;
     user-drag: none;
     -webkit-user-drag: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-
+    font-family: Herculanum, sans-serif;
 }
 
 body {
-    position: relative; 
+    position: relative;
 
 }
 
@@ -27,23 +30,23 @@ main {
     background-image: url('images/bg_katara_1.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    
+
 }
 
 #menu {
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 40%;
     height: 40%;
     font-weight: bold;
-   
-    
+
+
 }
 
 #menu * {
-    font-family: Herculanum, sans-serif;
+
     display: block;
     margin: auto;
     width: 70%;
@@ -52,30 +55,136 @@ main {
     height: 10%;
     font-weight: bold;
 }
+
 #menu button:hover {
     transform: scale(1.2);
     background-color: orangered;
     color: white;
     transition: transform 0.5s ease;
 }
-#menu p{
-overflow: hidden;
-height: 20%;
-font-size: 200%;
-border: solid 2px orangered;
-background-color: orangered;
-border-radius: 25px 25px;
-color: white;
-display: flex;
-    justify-content: center; 
-    align-items: center; 
+
+#menu p {
+    overflow: hidden;
+    height: 20%;
+    font-size: 200%;
+    border: solid 2px orangered;
+    background-color: orangered;
+    border-radius: 25px 25px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
+
+#spel {
+    display: none;
+   
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 200%;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.score p:nth-child(1) {
+    flex: 1 0;
+    margin-bottom: 10px;
+    align-self: center;
+    font-weight: bold;
+
+}
+
+.score p:nth-child(2) {
+    flex: 0 1 100%;
+    margin: 0;
+    align-content: center;
+
+
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60rem;
+    margin: 20px auto 60px auto;
+    grid-gap: 10px;
+    justify-content: center;
+    margin-top: -20px;
+}
+
+.kaart {
+    height: 225px;
+    width: 188px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    transition: transform 0.2s ease;
+}
+.kaart:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s ease;
+
+}
+
 @media screen and (max-width: 900px) {
-    #menu p{
+    #menu p {
         font-size: 100%;
         height: 20%;
-        }
-    
     }
-    
+
+    .kaart {
+        height: 180px;
+        width: 150px;
+    }
+
+    .wrapper {
+        width: 40rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+   
+    .kaart {
+        height: 120px;
+        width: 90px;
+    }
+
+    .wrapper {
+        width: 30rem;
+    }
+}
+@media screen and (max-width: 450px) {
+   
+    .kaart {
+        height: 100px;
+        width: 70px;
+    }
+
+    .wrapper {
+        width: 20rem;
+    }
+}
+@media screen and (max-width: 390px) {
+   
+    #menu p {
+       
+        font-size: 80%;
+        
+    }
+}
+
+@media screen and (max-width: 325px) {
+   
+    .kaart {
+        height: 80px;
+        width: 50px;
+    }
+
+    .wrapper {
+        width: 15rem;
+    }
+}
