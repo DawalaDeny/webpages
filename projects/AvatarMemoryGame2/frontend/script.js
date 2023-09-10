@@ -62,7 +62,7 @@ const speelveldVullen = () => {
     }
 }
 const spelen = (e) =>{
-   
+   console.log(e);
 }
 
 const timer = () => {
