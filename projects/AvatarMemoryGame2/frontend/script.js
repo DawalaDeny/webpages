@@ -7,15 +7,19 @@ const kaarten = ['kaart1.png', 'kaart2.png', 'kaart3.png',
 
 const numberOfCards = 12;
 
+let kaart1 = "";
+let kaart2 = "";
+
 const user = {
     name: "",
     score: 0
 };
-
+let gevondenKaarten = 0;
 
 let currentIndex = 1;
 
 const start = () => {
+
     backgroundInterval = setInterval(background, 3000);
     const play = document.getElementById('play')
     play.addEventListener('click', setup)
@@ -27,6 +31,7 @@ const setup = () => {
         speelveldVullen();
     }
 }
+
 const menuLeegmaken = () => {
     const menu = document.getElementById('menu')
     menu.style.display = "none"
@@ -50,8 +55,8 @@ const speelveldVullen = () => {
         const img = document.createElement("img");
         img.src = "./images/achterkant2.png"
         img.className = "kaart"
-        img.alt =`./images/${shuffled[index]}`  
-    
+        img.alt = `./images/${shuffled[index]}`
+
         wrapper.appendChild(img)
 
     }
@@ -61,8 +66,84 @@ const speelveldVullen = () => {
         kaartenClicken[i].addEventListener('click', spelen);
     }
 }
-const spelen = (e) =>{
-   console.log(e);
+const spelen = (e) => {
+    if (!kaart1) {
+        kaart1 = e.target;
+        omdraaien(kaart1);
+    } else if (!kaart2 && e.target !== kaart1) {
+        kaart2 = e.target;
+        omdraaien(kaart2);
+
+        const zelfde = controleren(kaart1, kaart2);
+        if (!zelfde) {
+            setTimeout(() => {
+                omdraaien(kaart1);
+                omdraaien(kaart2);
+                resetKaarten();
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                vastzetten();
+                resetKaarten();
+            }, 300)
+            gevondenKaarten += 2
+            if (gevondenKaarten === 12) {
+                clearInterval(scoreInterval);
+                setTimeout(alerten, 1000)
+                setTimeout(resetAlles, 1000)
+            }
+        }
+    }
+}
+
+const resetAlles = () => {
+    kaart1 = "";
+    kaart2 = "";
+    user.score=0;
+    user.name="";
+    const spel = document.getElementById('spel')
+    spel.style.display = 'none';
+    const kaarten = document.getElementsByClassName("wrapper")[0]
+    while (kaarten.firstChild) {
+        kaarten.removeChild(kaarten.firstChild);
+      }
+    const menu = document.getElementById('menu')
+    menu.style.display = 'unset';
+    gevondenKaarten = 0;
+    currentIndex = 1;
+    start();
+}
+
+const omdraaien = (kaart) => {
+    let src = kaart.src;
+    let alt = kaart.alt;
+    kaart.src = alt;
+    kaart.alt = src;
+}
+const alerten = () => {
+    alert(`${user.name}, you won with a score of ${user.score / 1000}`)
+}
+
+const vastzetten = () => {
+    kaart1.style.opacity = "0.6"
+    kaart2.style.opacity = "0.6"
+    kaart1.style.pointerEvents = "none"
+    kaart2.style.pointerEvents = "none"
+    kaart1.style.zIndex = "-1"
+    kaart2.style.zIndex = "-1"
+
+
+}
+
+const controleren = (kaart1, kaart2) => {
+    if (kaart1.src === kaart2.src) {
+        return true;
+    }
+    return false;
+}
+const resetKaarten = () => {
+    kaart1 = "";
+    kaart2 = "";
 }
 
 const timer = () => {
