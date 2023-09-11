@@ -23,6 +23,10 @@ const start = () => {
     backgroundInterval = setInterval(background, 3000);
     const play = document.getElementById('play')
     play.addEventListener('click', setup)
+    const highscore =  document.getElementById('highscore')
+    highscore.addEventListener('click', getHighscores)
+    const mainpage =  document.getElementById('mainpage')
+    mainpage.addEventListener('click', homepage)
 }
 const setup = () => {
     const check = namecheck();
@@ -30,6 +34,28 @@ const setup = () => {
         menuLeegmaken();
         speelveldVullen();
     }
+}
+const homepage = ()=>{
+    window.location.href = "https://www.dawaladeny.eu";
+}
+
+const getHighscores = async () =>{
+    
+        const response = await fetch('http://localhost:80/api/v1/scores', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+    
+        console.log(data);
+    
 }
 
 const menuLeegmaken = () => {
@@ -90,6 +116,7 @@ const spelen = (e) => {
             if (gevondenKaarten === 12) {
                 clearInterval(scoreInterval);
                 setTimeout(alerten, 1000)
+                setTimeout(background, 1000)
                 setTimeout(resetAlles, 1000)
             }
         }
@@ -121,7 +148,7 @@ const omdraaien = (kaart) => {
     kaart.alt = src;
 }
 const alerten = () => {
-    alert(`${user.name}, you won with a score of ${user.score / 1000}`)
+    alert(`${user.name}, you won with a time of ${user.score / 1000}`)
 }
 
 const vastzetten = () => {
