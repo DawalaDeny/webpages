@@ -2,17 +2,21 @@ const { StatusCodes } = require('http-status-codes')
 const invalidBody = require('../errors/invalidBody')
 const Score = require('../models/score')
 
-const getScores =async (req,res) =>{
-    //de await
+const getScores = async (req, res) => {
     try {
-        let scores =  Score.find()
-        scores = await scores.sort("score");
-        res.status(StatusCodes.OK).json({ scores })
+        const scores = await Score.find().sort('score');
+        const page = Number(req.query.page) || 1;
+        const limit = Number(req.query.limit) || 10;
+        const skip = (page - 1) * limit;
+
+        const totalScores = await Score.countDocuments({});
+        const numOfPages = Math.ceil(totalScores / limit);
+
+        res.status(StatusCodes.OK).json({ scores: scores.slice(skip, skip + limit), totalScores, numOfPages });
     } catch (error) {
-        res.status(StatusCodes.BAD_REQUEST).json({ err:error.message })
+        res.status(StatusCodes.BAD_REQUEST).json({ err: error.message });
     }
-    
-}
+};
 
 const createScore =async (req,res) =>{
     const {name, score} = req.body

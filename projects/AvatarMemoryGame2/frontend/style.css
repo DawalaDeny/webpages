@@ -16,10 +16,7 @@ html * {
     font-family: Herculanum, sans-serif;
 }
 
-body {
-    position: relative;
 
-}
 
 main {
     position: fixed;
@@ -45,7 +42,7 @@ main {
 
 }
 
-#menu * {
+#menu *{
 
     display: block;
     margin: auto;
@@ -56,7 +53,7 @@ main {
     font-weight: bold;
 }
 
-#menu button:hover {
+button:hover {
     transform: scale(1.2);
     background-color: orangered;
     color: white;
@@ -66,7 +63,7 @@ main {
 #menu p {
     overflow: hidden;
     height: 20%;
-    font-size: 200%;
+    font-size: 180%;
     border: solid 2px orangered;
     background-color: orangered;
     border-radius: 25px 25px;
@@ -74,6 +71,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 
 }
 
@@ -129,6 +127,81 @@ main {
     transition: transform 0.2s ease;
 
 }
+#scoreboard{
+    
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    color: white;
+    background-color: orangered;
+    display: none;
+   
+}
+#main{
+    width: 40%;
+    margin: auto;
+    height: 100vh;
+    padding: 5px;
+    
+}
+.scores{
+    display: grid;
+    grid-template-columns: auto auto;
+    
+}
+.scores p{
+    border-top: solid 1px white;
+border-bottom: solid 1px white;
+padding: 2px;
+background-color: rgb(1, 1, 1, 0.1);
+margin-bottom: 5px;
+
+
+}
+#scoreboard button{
+    width: 100%;
+    height: 5%;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+
+
+.center {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .pagination {
+    display: inline-block;
+  }
+  
+  .pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+  }
+  
+  .pagination a.active {
+    background-color: rgb(255, 255, 255, 0.8);
+    color: black;
+    border: 1px solid white;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+
+  .unclickable{
+    
+        pointer-events: none;
+      
+  }
+
 
 @media screen and (max-width: 900px) {
     #menu p {
@@ -145,6 +218,7 @@ main {
         width: 40rem;
     }
 }
+
 
 @media screen and (max-width: 700px) {
    

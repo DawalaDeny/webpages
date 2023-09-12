@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Avatar Memory Game v2</title>
 </head>
+
 <body>
     <main>
         <div id="menu">
@@ -22,13 +24,30 @@
         </div>
         <div id="spel">
             <div class="score">
-                <p>Timer: <span><p id="timer">0</p></span></p>
+                <p>Timer: <span>
+                        <p id="timer">0</p>
+                    </span></p>
             </div>
-            
             <div class="wrapper">
-                
+            </div>
+        </div>
+        <div id="scoreboard">
+            <div id="main">
+                <h1>Scoreboard</h1>
+                <div class="scores">
+                    
+                </div>
+                <div class="center">
+                    <div class="pagination">
+                    <a href="#" id="min">&laquo;</a>
+                    <a href="#" id="pagina" class="active unclickable">1</a>
+                    <a href="#" id="plus">&raquo;</a>
+                    </div>
+                  </div>
+                <button type="button" id="return">return</button>
             </div>
         </div>
     </main>
 </body>
+
 </html>

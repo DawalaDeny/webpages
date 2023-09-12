@@ -7,8 +7,12 @@ const kaarten = ['kaart1.png', 'kaart2.png', 'kaart3.png',
 
 const numberOfCards = 12;
 
+
 let kaart1 = "";
 let kaart2 = "";
+
+let page = 1;
+let max = 1;
 
 const user = {
     name: "",
@@ -40,16 +44,123 @@ const homepage = ()=>{
 }
 
 const getHighscores = async () => {
+const data = await fetch();
+menuLeegmaken()
+leaderbordMaken(data);
+max = data.numOfPages
+}
+
+ const leaderbordMaken = (data) =>{
+     const display = document.getElementById('scoreboard')
+     display.style.display = 'unset'
+     backgroundOrange();
+     const scores = document.getElementsByClassName('scores')[0]
+     data.scores.forEach(element => {
+         let p = document.createElement('p')
+         let p2 = document.createElement('p')
+         p.innerText = `${element.name} `
+         p2.innerText= `${element.score}`
+         scores.appendChild(p);
+         scores.appendChild(p2);
+     });
+    
+     const main = document.querySelector('main');
+     main.style.overflow="scroll"
+     const returnen =  document.getElementById('return')
+     returnen.addEventListener('click', terugNaarMenu)
+
+     const plus = document.getElementById('plus');
+     plus.addEventListener('click', pluss)
+
+     const min = document.getElementById('min');
+     min.addEventListener('click', minn)
+    
+     paginaAanpassen()
+     
+ }
+ const pluss = () =>{
+    if(page < max){
+        page ++
+    }
+    leegmakenHs();
+    getHighscores()
+ }
+ const minn = () =>{
+    if (page>1){
+        page --
+    }
+    leegmakenHs();
+    getHighscores()
+    
+ }
+ const paginaAanpassen=()=>{
+    const pagina = document.getElementById('pagina');
+    pagina.innerText = `${page}`
+ }
+
+ const terugNaarMenu= () =>{
+ leegmakenHs();
+ menuTonen();
+ start();
+ }
+ const backgroundOrange = () =>{
+    clearInterval(backgroundInterval);
+    const main = document.querySelector('main');
+    main.style.backgroundImage="unset"
+    main.style.backgroundColor = "orangered"
+ }
+ const leegmakenHs = () =>{
+    const scores = document.getElementsByClassName("scores")[0]
+    while (scores.firstChild) {
+        scores.removeChild(scores.firstChild);
+      }
+      const display = document.getElementById('scoreboard')
+    display.style.display = 'none'
+    
+}
+const menuTonen = () =>{
+    const menu = document.getElementById('menu')
+    menu.style.display = "unset"
+    const main = document.querySelector('main');
+   main.style.backgroundColor = "unset"
+   main.style.backgroundImage = `url('images/${backgroundList[currentIndex]}')`
+     main.style.overflow="hidden"
+}
+const postData = async () => {
     try {
-      const response = await axios.get('http://localhost:80/api/v1/scores'); 
-      const data = response.data; 
-  
-      console.log(data); 
+        let score = user.score/1000
+      const dataToSend = {
+        name: user.name, 
+        score: score,
+      };
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const jsonData = JSON.stringify(dataToSend)
+      const response = await axios.post('http://localhost:80/api/v1/scores', jsonData, config);
+    
     } catch (error) {
-      console.error('Fout bij het ophalen van gegevens:', error);
+      console.error('error: ', error);
     }
   };
-  
+
+const fetch = async () =>{
+    try {
+        const config = {
+            params: {
+              'page': page,
+              'limit': 10,
+            },
+          };
+        const response = await axios.get('http://localhost:80/api/v1/scores', config); 
+        const data = response.data; 
+        return data
+      } catch (error) {
+        console.error('error: ', error);
+      }
+}
 
 const menuLeegmaken = () => {
     const menu = document.getElementById('menu')
@@ -109,6 +220,7 @@ const spelen = (e) => {
             if (gevondenKaarten === 12) {
                 clearInterval(scoreInterval);
                 setTimeout(alerten, 1000)
+                postData();
                 setTimeout(background, 1000)
                 setTimeout(resetAlles, 1000)
             }
