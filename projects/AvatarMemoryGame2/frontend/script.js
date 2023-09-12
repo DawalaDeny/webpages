@@ -40,16 +40,71 @@ const homepage = ()=>{
 }
 
 const getHighscores = async () => {
+const data = await fetch();
+menuLeegmaken()
+leaderbordMaken(data);
+}
+
+const leaderbordMaken = (data) =>{
+    const display = document.getElementById('scoreboard')
+    display.style.display = 'unset'
+    const scores = document.getElementsByClassName('scores')[0]
+    data.scores.forEach(element => {
+        let p = document.createElement('p')
+        p.innerText = `${element.name} with a time of: ${element.score}`
+        scores.appendChild(p);
+    });
+    const returnen =  document.getElementById('return')
+    returnen.addEventListener('click', terugNaarMenu)
+}
+
+const terugNaarMenu= () =>{
+leegmakenHs();
+menuTonen();
+
+}
+const leegmakenHs = () =>{
+    const scores = document.getElementsByClassName("scores")[0]
+    while (scores.firstChild) {
+        scores.removeChild(scores.firstChild);
+      }
+      const display = document.getElementById('scoreboard')
+    display.style.display = 'none'
+    
+}
+const menuTonen = () =>{
+    const menu = document.getElementById('menu')
+    menu.style.display = "unset"
+}
+const postData = async () => {
     try {
-      const response = await axios.get('http://localhost:80/api/v1/scores'); 
-      const data = response.data; 
-  
-      console.log(data); 
+        let score = user.score/1000
+      const dataToSend = {
+        name: user.name, 
+        score: score,
+      };
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const jsonData = JSON.stringify(dataToSend)
+      const response = await axios.post('http://localhost:80/api/v1/scores', jsonData, config);
+    
     } catch (error) {
-      console.error('Fout bij het ophalen van gegevens:', error);
+      console.error('error: ', error);
     }
   };
-  
+
+const fetch = async () =>{
+    try {
+        const response = await axios.get('http://localhost:80/api/v1/scores'); 
+        const data = response.data; 
+        return data
+      } catch (error) {
+        console.error('error: ', error);
+      }
+}
 
 const menuLeegmaken = () => {
     const menu = document.getElementById('menu')
@@ -109,6 +164,7 @@ const spelen = (e) => {
             if (gevondenKaarten === 12) {
                 clearInterval(scoreInterval);
                 setTimeout(alerten, 1000)
+                postData();
                 setTimeout(background, 1000)
                 setTimeout(resetAlles, 1000)
             }
