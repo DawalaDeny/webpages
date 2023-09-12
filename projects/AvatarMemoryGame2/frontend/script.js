@@ -39,24 +39,17 @@ const homepage = ()=>{
     window.location.href = "https://www.dawaladeny.eu";
 }
 
-const getHighscores = async () =>{
-    
-        const response = await fetch('http://localhost:80/api/v1/scores', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-    
-        console.log(data);
-    
-}
+const getHighscores = async () => {
+    try {
+      const response = await axios.get('http://localhost:80/api/v1/scores'); 
+      const data = response.data; 
+  
+      console.log(data); 
+    } catch (error) {
+      console.error('Fout bij het ophalen van gegevens:', error);
+    }
+  };
+  
 
 const menuLeegmaken = () => {
     const menu = document.getElementById('menu')

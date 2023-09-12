@@ -1,8 +1,8 @@
 const { StatusCodes } = require('http-status-codes')
-class nameError extends Error{
+class invalidBody extends Error{
     constructor(message) {
         super(message);
-        this.statusCode = StatusCodes.FORBIDDEN
+        this.statusCode = StatusCodes.BAD_REQUEST
       }
 }
-module.exports = nameError;
+module.exports = invalidBody;
