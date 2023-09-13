@@ -12,10 +12,19 @@ const xss = require('xss-clean');
 const errorHandler = require('./middleware/errorHandlerMiddleware')
 
 //middleware
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net'], 
+        
+      },
+    })
+  );
+app.use(xss())
 app.use(express.json())
 app.use(express.static('../frontend'))
-app.use(helmet())
-app.use(xss())
+
 app.use('/api/v1/scores', scores)
 app.get('/', (req, res)=>{
     res.send(index.html)

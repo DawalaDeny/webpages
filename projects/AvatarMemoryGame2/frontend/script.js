@@ -163,7 +163,7 @@ const fetch = async () =>{
         const config = {
             params: {
               'page': page,
-              'limit': 14,
+              'limit': 1,
             },
           };
         const response = await axios.get('http://localhost:80/api/v1/scores', config); 

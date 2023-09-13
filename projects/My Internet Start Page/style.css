@@ -1,0 +1,88 @@
+html {
+    box-sizing: border-box;
+}
+h1{
+    font-size: 35px;
+}
+#bovenste p {
+   margin: 0 0 5px 0;
+
+}
+#bovenste p:nth-last-child(2) {
+    font-size: 10px;
+
+}
+#bovenste {
+    width: 99%;
+    margin: auto;
+}
+
+#bovenste button {
+    width: 100%;
+    background-color: forestgreen;
+    color: white;
+    border: 2px solid lawngreen;
+    padding: 3px;
+    margin: auto;
+}
+
+#bovenste input {
+    width: 100%;
+    border: 1px solid black;
+    margin: auto;
+}
+
+#onderste {
+margin-top: 20px;
+}
+#onderste h2 {
+    font-size: 25px;
+}
+#onderste h3 {
+    font-size: 20px;
+}
+.row div div{
+    margin: 10px 5px;
+    color: white;
+    padding: 10px;
+
+
+}
+#onderste h3{
+   font-size: 15px;
+}
+#onderste p{
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+#onderste button{
+    background-color: black;
+    color: white;
+    font-size: 10px;
+    padding: 3px;
+    border-radius: 15%;
+    margin-top: 0;
+}
+.container{
+    width: 100%;
+}
+.row .youtube{
+ background-color: red;
+}
+.row .google{
+    background-color: cornflowerblue;
+}
+#onderste .container .row .google button{
+    background-color: orangered;
+    border: darkorange;
+}
+#onderste .container .row .instagram button{
+    background-color: orange;
+    border: orangered;
+}
+.row .instagram{
+    background-color: darkorchid;
+}
+.row .twitter{
+    background-color: dodgerblue;
+}
