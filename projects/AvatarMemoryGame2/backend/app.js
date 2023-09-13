@@ -1,18 +1,21 @@
 require('express-async-errors');
 require('dotenv').config()
 
+const helmet = require('helmet');
 const express = require ("express");
 const app = express();
 const port= process.env.PORT || 80;
 
 const connectDB = require('./db/dbConnect')
 const scores = require("./routes/scores")
-
+const xss = require('xss-clean');
 const errorHandler = require('./middleware/errorHandlerMiddleware')
 
 //middleware
 app.use(express.json())
 app.use(express.static('../frontend'))
+app.use(helmet())
+app.use(xss())
 app.use('/api/v1/scores', scores)
 app.get('/', (req, res)=>{
     res.send(index.html)

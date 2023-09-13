@@ -102,7 +102,7 @@ max = data.numOfPages
  const terugNaarMenu= () =>{
  leegmakenHs();
  menuTonen();
- start();
+ resetAlles();
  }
  const backgroundOrange = () =>{
     clearInterval(backgroundInterval);
@@ -146,10 +146,14 @@ const postData = async () => {
         },
       };
       const jsonData = JSON.stringify(dataToSend)
-      const response = await axios.post('http://localhost:80/api/v1/scores', jsonData, config);
-    
+      await axios.post('http://localhost:80/api/v1/scores', jsonData, config);
+      setTimeout(alerten, 1000);
+      setTimeout(background, 1000);
+      setTimeout(resetAlles, 1000);
     } catch (error) {
-      console.error('error: ', error);
+      popup("Error", `${error.response.data.msg}`);
+      setTimeout(background, 1000);
+      setTimeout(resetAlles, 1000);
     }
   };
 
@@ -166,8 +170,10 @@ const fetch = async () =>{
 
         const data = response.data; 
         return data
+        
       } catch (error) {
-        console.error('error: ', error);
+        popup("Error", `${error.response.data.msg}`);
+        
       }
 }
 
@@ -228,15 +234,14 @@ const spelen = (e) => {
             gevondenKaarten += 2
             if (gevondenKaarten === 12) {
                 clearInterval(scoreInterval);
-                setTimeout(alerten, 1000)
+
                 postData();
-                setTimeout(background, 1000)
-                setTimeout(resetAlles, 1000)
+                
             }
         }
     }
 }
-
+    
 const resetAlles = () => {
     kaart1 = "";
     kaart2 = "";
@@ -252,6 +257,8 @@ const resetAlles = () => {
     menu.style.display = 'unset';
     gevondenKaarten = 0;
     currentIndex = 1;
+    page = 1;
+    max = 1;
     start();
 }
 
