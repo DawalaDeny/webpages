@@ -47,6 +47,7 @@ const getHighscores = async () => {
 const data = await fetch();
 menuLeegmaken()
 leaderbordMaken(data);
+
 max = data.numOfPages
 }
 
@@ -109,7 +110,12 @@ max = data.numOfPages
     main.style.backgroundImage="unset"
     main.style.backgroundColor = "orangered"
  }
- const leegmakenHs = () =>{
+
+
+
+
+const leegmakenHs = () =>{
+
     const scores = document.getElementsByClassName("scores")[0]
     while (scores.firstChild) {
         scores.removeChild(scores.firstChild);
@@ -125,6 +131,7 @@ const menuTonen = () =>{
    main.style.backgroundColor = "unset"
    main.style.backgroundImage = `url('images/${backgroundList[currentIndex]}')`
      main.style.overflow="hidden"
+
 }
 const postData = async () => {
     try {
@@ -148,13 +155,15 @@ const postData = async () => {
 
 const fetch = async () =>{
     try {
+
         const config = {
             params: {
               'page': page,
-              'limit': 10,
+              'limit': 14,
             },
           };
         const response = await axios.get('http://localhost:80/api/v1/scores', config); 
+
         const data = response.data; 
         return data
       } catch (error) {

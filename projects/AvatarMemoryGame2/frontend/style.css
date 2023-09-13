@@ -127,6 +127,7 @@ button:hover {
     transition: transform 0.2s ease;
 
 }
+
 #scoreboard{
     
     width: 100%;
@@ -186,6 +187,7 @@ margin-bottom: 5px;
     transition: background-color .3s;
     border: 1px solid #ddd;
     margin: 0 4px;
+    
   }
   
   .pagination a.active {
@@ -201,6 +203,30 @@ margin-bottom: 5px;
         pointer-events: none;
       
   }
+
+#scoreboard {
+    width: 50%;
+    height: 100vh;
+    margin: auto;
+    overflow: hidden;
+    display: none;
+
+}
+
+#scoreboard h1 {
+    font-weight: bold;
+    font-size: 200%;
+    text-align: center;
+    margin-top: 10%;
+
+}
+
+#scoreboard p {
+
+    text-align: center;
+    margin-top: 5px;
+    background-color: rgb(1, 1, 1, 0.1);
+}
 
 
 @media screen and (max-width: 900px) {
@@ -249,6 +275,11 @@ margin-bottom: 5px;
         font-size: 80%;
         
     }
+    .pagination a {
+        margin: 0;
+        width: 1px;
+      }
+
 }
 
 @media screen and (max-width: 325px) {
