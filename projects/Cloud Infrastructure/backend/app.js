@@ -1,9 +1,13 @@
 require('express-async-errors');
 require('dotenv').config()
+const cors = require('cors');
 
 const helmet = require('helmet');
 const express = require ("express");
 const app = express();
+app.use(cors({
+  origin: '*'
+}));
 const port= process.env.PORT || 80;
 
 const connectDB = require('./db/dbConnect')
