@@ -1,6 +1,7 @@
 require('express-async-errors');
 require('dotenv').config()
 const cors = require('cors');
+const seed = require('./db/seed');
 
 const helmet = require('helmet');
 const express = require ("express");
@@ -35,9 +36,10 @@ app.use(errorHandler);
 
 const start = async () =>{
     try {
-        await connectDB(process.env.MONGO_URI);
+       
+        await connectDB(process.env.MONGO);
         app.listen(port, console.log(`server is listening to port: ${port}...`));
-
+        seed();
     } catch (error) {
         console.log(error);
     }
